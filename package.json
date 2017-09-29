@@ -4,7 +4,10 @@
   "description": "This is a workshop about protractor",
   "main": "index.js",
   "scripts": {
-    "test": "protractor protractor.conf.js",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "test": "npm run build && protractor dist/protractor/config.js",
     "wd-update": "webdriver-manager update",
     "wd-start": "webdriver-manager start"
   },
@@ -26,5 +29,9 @@
   "homepage": "https://github.com/svillegasz/protractor-workshop-2017#readme",
   "dependencies": {
     "protractor": "^5.1.2"
+  },
+  "devDependencies": {
+    "@types/jasminewd2": "^2.0.3",
+    "typescript": "^2.5.3"
   }
 }
