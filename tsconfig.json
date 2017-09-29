@@ -4,7 +4,8 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
-        "outDir": "dist"
+        "outDir": "dist",
+        "lib": ["ES2015"]
     },
     "include": [
         "test/**/*",
