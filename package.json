@@ -1,0 +1,30 @@
+{
+  "name": "protractor-workshop-2017",
+  "version": "1.0.0",
+  "description": "This is a workshop about protractor",
+  "main": "index.js",
+  "scripts": {
+    "test": "protractor protractor.conf.js",
+    "wd-update": "webdriver-manager update",
+    "wd-start": "webdriver-manager start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svillegasz/protractor-workshop-2017.git"
+  },
+  "keywords": [
+    "ui-testing",
+    "dojo",
+    "practice",
+    "protractor"
+  ],
+  "author": "Sebastian Villegas - svillegasz@psl.com.co (svillegasz)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/svillegasz/protractor-workshop-2017/issues"
+  },
+  "homepage": "https://github.com/svillegasz/protractor-workshop-2017#readme",
+  "dependencies": {
+    "protractor": "^5.1.2"
+  }
+}
