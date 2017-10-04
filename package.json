@@ -7,7 +7,9 @@
     "clean": "rm -rf dist",
     "prebuild": "npm run clean",
     "build": "tsc",
-    "test": "npm run build && protractor dist/protractor/config.js",
+    "test:local": "npm run build && protractor dist/protractor/config.js",
+    "test:headless": "npm run build && protractor dist/protractor/headless.config.js",
+    "test": "npm run test:local && npm run test:headless",
     "wd-update": "webdriver-manager update",
     "wd-start": "webdriver-manager start"
   },
