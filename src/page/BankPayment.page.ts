@@ -2,7 +2,7 @@ import { $, ElementFinder, promise } from 'protractor';
 
 export class BankPaymentPage {
  private get confirmButton(): ElementFinder {
-   return $('#HOOK_PAYMENT > div:nth-child(1) > div > p > a');
+   return $('#cart_navigation > button > span');
  }
 
  public confirmOrder(): promise.Promise<void> {
