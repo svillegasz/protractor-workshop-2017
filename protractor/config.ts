@@ -5,6 +5,10 @@ export let config: Config = {
     framework: 'jasmine',
     specs: ['../test/**/*.spec.js'],
     noGlobals: true,
+    getPageTimeout: 30000,
+    jasmineNodeOpts: {
+        defaultTimeoutInterval: 120000
+    },
     onPrepare: function () {
         browser.ignoreSynchronization = true;
         reporter();
