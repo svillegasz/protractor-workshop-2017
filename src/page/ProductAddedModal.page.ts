@@ -1,14 +1,11 @@
-import { $, ElementFinder, ExpectedConditions, browser } from 'protractor';
+import { $, ElementFinder, promise } from 'protractor';
 
 export class ProductAddedModalPage {
- private until = ExpectedConditions;
-
  private get proceedButton(): ElementFinder {
-   return $('.button-container > a');
+   return $('[style*="display: block;"] .button-container > a');
  }
 
- public async proceedToCheckout(): Promise<void> {
-   await browser.wait(this.until.visibilityOf(this.proceedButton));
+ public proceedToCheckout(): promise.Promise<void> {
    return this.proceedButton.click();
  }
 }
