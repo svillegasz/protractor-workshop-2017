@@ -9,12 +9,8 @@ export class ShippingStepPage {
     return $('#cgv');
   }
 
-  public agreedTerms(): promise.Promise<void> {
-    return this.cgv.click();
-  }
-
   public async proceedToCheckout(): Promise<void> {
-    await this.agreedTerms();
-    return this.proceedButton.click();
+    await this.cgv.click();
+    return await this.proceedButton.click();
   }
 }
