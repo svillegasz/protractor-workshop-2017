@@ -34,10 +34,6 @@ describe('Buy a t-shirt', () => {
     await (browser.sleep(3000));
     await addressStepPage.proceedToCheckout();
     await (browser.sleep(3000));
-
-    await shippingStepPage.agreedTerms();
-    await (browser.sleep(3000));
-
     await shippingStepPage.proceedToCheckout();
     await (browser.sleep(3000));
     await paymentStepPage.payByBank();

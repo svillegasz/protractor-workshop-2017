@@ -1,4 +1,4 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { $, ElementFinder } from 'protractor';
 
 export class SignInStepPage {
   private get email(): ElementFinder {
@@ -13,9 +13,9 @@ export class SignInStepPage {
     return $('#SubmitLogin > span');
   }
 
-  public signIn(email, pass): promise.Promise<void> {
-    this.email.sendKeys(email);
-    this.password.sendKeys(pass);
-    return this.submit.click();
+  public async signIn(email, password): Promise<void> {
+    await this.email.sendKeys(email);
+    await this.password.sendKeys(password);
+    await this.submit.click();
   }
 }
