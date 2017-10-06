@@ -16,7 +16,7 @@ export let config: Config = {
     },    
     noGlobals: true,
     onPrepare: function () {
-        browser.manage().timeouts().implicitlyWait(3000)
+        browser.manage().timeouts().implicitlyWait(0)
         browser.ignoreSynchronization = true;
         reporter();
     },

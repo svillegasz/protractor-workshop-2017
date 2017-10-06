@@ -10,7 +10,7 @@ export let config: Config = {
         defaultTimeoutInterval: 120000
     },
     onPrepare: function () {
-        browser.manage().timeouts().implicitlyWait(3000);
+        browser.manage().timeouts().implicitlyWait(0);
         browser.ignoreSynchronization = true;
         reporter();
     },
