@@ -11,6 +11,6 @@ export class ShippingStepPage {
 
   public async proceedToCheckout(): Promise<void> {
     await this.cgv.click();
-    return await this.proceedButton.click();
+    await this.proceedButton.click();
   }
 }
