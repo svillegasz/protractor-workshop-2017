@@ -4,7 +4,8 @@ import { reporter } from './helper/reporter';
 export let config: Config = {
     framework: 'jasmine',
     specs: ['../test/**/*.spec.js'],
-    noGlobals: true,
+    noGlobals: true,    
+    getPageTimeout: 1000,
     onPrepare: function () {
         browser.ignoreSynchronization = true;
         reporter();
