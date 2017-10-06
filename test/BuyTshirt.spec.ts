@@ -15,7 +15,7 @@ describe('Buy a t-shirt', () => {
     await (browser.sleep(3000));
     await $('#add_to_cart > button > span').click();
     await (browser.sleep(3000));
-    await $('.button-container > a').click();
+    await $('[style*="display: block;"] .button-container > a').click();
     await (browser.sleep(3000));
     await $('.cart_navigation span').click();
     await (browser.sleep(3000));
