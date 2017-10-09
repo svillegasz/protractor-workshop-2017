@@ -7,8 +7,8 @@ export class OrderResumePage {
     return $('#center_column > div > p > strong');
   }
 
-  public async getCompleteMessage(): Promise<void> {
+  public async getCompleteMessage(): Promise<String> {
     await browser.wait(this.until.presenceOf(this.completeMessage), 3000);
-    await this.completeMessage.getText();
+    return await this.completeMessage.getText();
   }
 }
