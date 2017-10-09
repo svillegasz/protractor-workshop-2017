@@ -9,6 +9,6 @@ export class MenuContentPage {
 
   public async goToTShirtMenu(): Promise<void> {
     await browser.wait(this.until.presenceOf(this.tShirtMenu), 3000);
-    return this.tShirtMenu.click();
+    await this.tShirtMenu.click();
   }
 }

@@ -9,6 +9,6 @@ export class AddressStepPage {
 
   public async proceedToCheckout(): Promise<void> {
     await browser.wait(this.until.presenceOf(this.proceedButton), 3000);
-    return this.proceedButton.click();
+    await this.proceedButton.click();
   }
 }

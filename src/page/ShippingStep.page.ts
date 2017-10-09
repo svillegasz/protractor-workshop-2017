@@ -11,13 +11,9 @@ export class ShippingStepPage {
     return $('#cgv');
   }
 
-  public async agreedTerms(): Promise<void> {
-    await browser.wait(this.until.presenceOf(this.cgv), 3000);
-    return this.cgv.click();
-  }
-
   public async proceedToCheckout(): Promise<void> {
+    await this.cgv.click();
     await browser.wait(this.until.presenceOf(this.proceedButton), 3000);
-    return this.proceedButton.click();
+    await this.proceedButton.click();
   }
 }

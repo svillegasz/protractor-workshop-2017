@@ -27,9 +27,6 @@ describe('Buy a t-shirt', () => {
     await summaryStepPage.proceedToCheckout();
     await signInStepPage.signIn('aperdomobo@gmail.com', 'WorkshopProtractor');
     await addressStepPage.proceedToCheckout();
-
-    await shippingStepPage.agreedTerms();
-
     await shippingStepPage.proceedToCheckout();
     await paymentStepPage.payByBank();
     await bankPaymentPage.confirmOrder();

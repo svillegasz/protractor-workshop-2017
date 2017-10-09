@@ -9,6 +9,6 @@ export class BankPaymentPage {
 
   public async confirmOrder(): Promise<void> {
     await browser.wait(this.until.presenceOf(this.confirmButton), 3000);
-    return this.confirmButton.click();
+    await this.confirmButton.click();
   }
 }

@@ -10,6 +10,6 @@ export class ProductAddedModalPage {
   public async proceedToCheckout(): Promise<void> {
     await browser.wait(this.until.presenceOf(this.proceedButton), 3000);
     await browser.wait(this.until.visibilityOf(this.proceedButton), 3000);
-    return this.proceedButton.click();
+    await this.proceedButton.click();
   }
 }

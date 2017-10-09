@@ -9,6 +9,6 @@ export class ProductListPage {
 
   public async goToProductItemDetails(): Promise<void> {
     await browser.wait(this.until.presenceOf(this.productItem), 3000);
-    return this.productItem.click();
+    await this.productItem.click();
   }
 }

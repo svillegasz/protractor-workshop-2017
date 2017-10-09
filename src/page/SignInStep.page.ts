@@ -21,6 +21,6 @@ export class SignInStepPage {
     await browser.wait(this.until.presenceOf(this.password), 3000);
     await this.password.sendKeys(pass);
     await browser.wait(this.until.presenceOf(this.submit), 3000);
-    return this.submit.click();
+    await this.submit.click();
   }
 }

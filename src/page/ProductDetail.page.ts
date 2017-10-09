@@ -8,7 +8,7 @@ export class ProductDetailPage {
   }
 
   public async addToCart(): Promise<void> {
-    browser.wait(this.until.presenceOf(this.addButton), 3000);
-    return this.addButton.click();
+    await browser.wait(this.until.presenceOf(this.addButton), 3000);
+    await this.addButton.click();
   }
 }
