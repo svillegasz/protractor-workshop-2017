@@ -1,14 +1,14 @@
-import { $, ElementFinder, ExpectedConditions, browser} from 'protractor';
+import { $, ElementFinder, ExpectedConditions, browser } from 'protractor';
 
 export class MenuContentPage {
- private until = ExpectedConditions;
- 
- private get tShirtMenu(): ElementFinder {
-   return $('#block_top_menu > ul > li:nth-child(3) > a');
- }
+  private until = ExpectedConditions;
 
- public async goToTShirtMenu(): Promise<void> {
-   await browser.wait(this.until.presenceOf(this.tShirtMenu), 3000);
-   return this.tShirtMenu.click();
- }
+  private get tShirtMenu(): ElementFinder {
+    return $('#block_top_menu > ul > li:nth-child(3) > a');
+  }
+
+  public async goToTShirtMenu(): Promise<void> {
+    await browser.wait(this.until.presenceOf(this.tShirtMenu), 3000);
+    return this.tShirtMenu.click();
+  }
 }

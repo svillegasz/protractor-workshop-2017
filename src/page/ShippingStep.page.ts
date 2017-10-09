@@ -1,23 +1,23 @@
-import { $, ElementFinder, ExpectedConditions, browser} from 'protractor';
+import { $, ElementFinder, ExpectedConditions, browser } from 'protractor';
 
 export class ShippingStepPage {
- private until = ExpectedConditions;
- 
- private get proceedButton(): ElementFinder {
-   return $('#form > p > button > span');
- }
+  private until = ExpectedConditions;
 
- private get cgv(): ElementFinder {
-   return $('#cgv');
- }
+  private get proceedButton(): ElementFinder {
+    return $('#form > p > button > span');
+  }
 
- public async agreedTerms(): Promise<void> {
-   await browser.wait(this.until.presenceOf(this.cgv), 3000);
-   return this.cgv.click();
- }
+  private get cgv(): ElementFinder {
+    return $('#cgv');
+  }
 
- public async proceedToCheckout(): Promise<void> {
-   await browser.wait(this.until.presenceOf(this.proceedButton), 3000);
-   return this.proceedButton.click();
- }
+  public async agreedTerms(): Promise<void> {
+    await browser.wait(this.until.presenceOf(this.cgv), 3000);
+    return this.cgv.click();
+  }
+
+  public async proceedToCheckout(): Promise<void> {
+    await browser.wait(this.until.presenceOf(this.proceedButton), 3000);
+    return this.proceedButton.click();
+  }
 }
