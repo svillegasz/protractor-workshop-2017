@@ -1,4 +1,4 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { $, ElementFinder } from 'protractor';
 
 export class ShippingStepPage {
   private get proceedButton(): ElementFinder {
@@ -9,11 +9,8 @@ export class ShippingStepPage {
     return $('#cgv');
   }
 
-  public agreedTerms(): promise.Promise<void> {
-    return this.cgv.click();
-  }
-
-  public proceedToCheckout(): promise.Promise<void> {
-    return this.proceedButton.click();
+  public async proceedToCheckout(): Promise<void> {
+    await this.cgv.click();
+    await this.proceedButton.click();
   }
 }
