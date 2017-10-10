@@ -31,7 +31,7 @@ describe('Given the automation practice page', () => {
       await summaryStepPage.proceedToCheckout();
     });
 
-    describe('And when I sign-in in the page', () => {
+    describe('And I sign-in in the page', () => {
       const username = 'aperdomobo@gmail.com';
       const password = 'WorkshopProtractor';
 
@@ -39,12 +39,12 @@ describe('Given the automation practice page', () => {
         await signInStepPage.signIn(username, password);
       });
 
-      describe('And when I choose a delivering address', () => {
+      describe('And I choose a delivering address', () => {
         beforeEach(async () => {
           await addressStepPage.proceedToCheckout();
         });
 
-        describe('And when I proceed to Pay', () => {
+        describe('And I proceed to Pay', () => {
           beforeEach(async () => {
             await shippingStepPage.proceedToCheckout();
             await paymentStepPage.payByBank();
