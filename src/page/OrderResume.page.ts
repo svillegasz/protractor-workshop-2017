@@ -2,7 +2,7 @@ import { $, ElementFinder, promise } from 'protractor';
 
 export class OrderResumePage {
   public get completeMessage(): ElementFinder {
-    return $('#center_column > div > p > strong');
+    return $('p.cheque-indent > strong');
   }
 
   public getCompleteMessage(): promise.Promise<String> {

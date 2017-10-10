@@ -2,7 +2,7 @@ import { $, ElementFinder } from 'protractor';
 
 export class ShippingStepPage {
   private get proceedButton(): ElementFinder {
-    return $('#form > p > button > span');
+    return $('#form button[type="submit"]');
   }
 
   private get cgv(): ElementFinder {
