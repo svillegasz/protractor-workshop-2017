@@ -5,7 +5,7 @@ import {
   ShippingStepPage, PaymentStepPage, BankPaymentPage, OrderResumePage
 } from '../src/page';
 
-describe('Buy a t-shirt', () => {
+describe('Given the automation practice page', () => {
   const menuContentPage: MenuContentPage = new MenuContentPage();
   const productListPage: ProductListPage = new ProductListPage();
   const productDetailPage: ProductDetailPage = new ProductDetailPage();
@@ -18,20 +18,45 @@ describe('Buy a t-shirt', () => {
   const bankPaymentPage: BankPaymentPage = new BankPaymentPage();
   const orderResumePage: OrderResumePage = new OrderResumePage();
 
-  it('then should be bought a t-shirt', async () => {
+  beforeEach(async () => {
     await browser.get('http://automationpractice.com/');
-    await menuContentPage.goToTShirtMenu();
-    await productListPage.goToProductItemDetails();
-    await productDetailPage.addToCart();
-    await productAddedModalPage.proceedToCheckout();
-    await summaryStepPage.proceedToCheckout();
-    await signInStepPage.signIn('aperdomobo@gmail.com', 'WorkshopProtractor');
-    await addressStepPage.proceedToCheckout();
-    await shippingStepPage.proceedToCheckout();
-    await paymentStepPage.payByBank();
-    await bankPaymentPage.confirmOrder();
+  });
 
-    await expect(orderResumePage.getCompleteMessage())
-      .toBe('Your order on My Store is complete.');
+  describe('When I decide to buy a T-shirt', () => {
+    beforeEach(async () => {
+      await menuContentPage.goToTShirtMenu();
+      await productListPage.goToProductItemDetails();
+      await productDetailPage.addToCart();
+      await productAddedModalPage.proceedToCheckout();
+      await summaryStepPage.proceedToCheckout();
+    });
+
+    describe('And when I sign-in in the page', () => {
+      const username = 'aperdomobo@gmail.com';
+      const password = 'WorkshopProtractor';
+
+      beforeEach(async () => {
+        await signInStepPage.signIn(username, password);
+      });
+
+      describe('And when I choose a delivering address', () => {
+        beforeEach(async () => {
+          await addressStepPage.proceedToCheckout();
+        });
+
+        describe('And when I proceed to Pay', () => {
+          beforeEach(async () => {
+            await shippingStepPage.proceedToCheckout();
+            await paymentStepPage.payByBank();
+            await bankPaymentPage.confirmOrder();
+          });
+
+          it('Then It should confirm my order is complete', async () => {
+            await expect(orderResumePage.getCompleteMessage())
+              .toBe('Your order on My Store is complete.');
+          });
+        });
+      });
+    });
   });
 });
