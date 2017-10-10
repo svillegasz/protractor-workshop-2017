@@ -1,6 +1,10 @@
 import { $, $$, ElementFinder, ElementArrayFinder, promise } from 'protractor';
 
 export class PersonalInformationPage {
+  private get title(): ElementFinder {
+    return $('.page-title h1');
+  }
+
   private get firstName(): ElementFinder {
     return $('input[name="firstname"]');
   }
@@ -39,5 +43,60 @@ export class PersonalInformationPage {
 
   private get submit(): ElementFinder {
     return $('#submit');
+  }
+
+  private selectSex(sexName: String): promise.Promise<void> {
+    return this.sex
+      .filter(sex => sex.getAttribute('value').then(value => value === sexName))
+      .first()
+      .click();
+  }
+
+  private selectExperience(years: String): promise.Promise<void> {
+    return this.yearsOfExperience
+      .filter(experience => experience.getAttribute('value').then(value => value === years))
+      .first()
+      .click();
+  }
+
+  private selectProfessions(professions: String[]): promise.Promise<void> {
+    return this.professions
+      .filter(profession => profession.getAttribute('value')
+        .then(value => professions.some(profession => profession === value)))
+      .each(profession => profession.click());
+  }
+
+  private selectTools(tools: String[]): promise.Promise<void> {
+    return this.automationTools
+      .filter(tool => tool.getAttribute('value')
+        .then(value => tools.some(tool => tool === value)))
+      .each(tool => tool.click());
+  }
+
+  private selectContinent(continent: String): promise.Promise<void> {
+    return this.continent.$(`option[value="${continent}"`).click();
+  }
+
+  private selectCommands(commands: String[]): promise.Promise<void> {
+    return this.continent.$$(`option`)
+      .filter(command => command.getAttribute('value')
+        .then(value => commands.some(command => command === value)))
+      .each(command => command.click());
+  }
+
+  public async fillForm(formData: any): Promise<void>{
+    await this.firstName.sendKeys(formData.firstName);
+    await this.lastName.sendKeys(formData.lastName);
+    await this.selectSex(formData.sex);
+    await this.selectExperience(formData.experience);
+    await this.selectProfessions(formData.profession);
+    await this.selectTools(formData.tools);
+    await this.selectContinent(formData.continent);
+    await this.selectCommands(formData.commands);
+    await this.submit.click();
+  }
+
+  public getTitle(): promise.Promise<String> {
+    return this.title.getText();
   }
 }

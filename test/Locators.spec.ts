@@ -1,14 +1,14 @@
 import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
 
-describe('Name of the group', () => {
+describe('Given the tools QA page', () => {
   const personalInformationPage: PersonalInformationPage = new PersonalInformationPage();
 
   beforeEach(async () => {
-    browser.get('http://toolsqa.com/automation-practice-form/');
+    await browser.get('http://toolsqa.com/automation-practice-form/');
   });
 
-  describe('Name of the group', () => {
+  describe('When I fill the form', () => {
     beforeEach(async () => {
       await personalInformationPage.fillForm({
         firstName: 'Alejandro',
@@ -26,8 +26,10 @@ describe('Name of the group', () => {
           'WebElement Commands']
       });
     });
-    it('should behave...', () => {
 
+    it('Then it should display the correct title', () => {
+      expect(personalInformationPage.getTitle())
+        .toMatch('Automation Practice Form');
     });
   });
 });
