@@ -1,8 +1,6 @@
-import { $, ElementFinder, ExpectedConditions, browser } from 'protractor';
+import { $, ElementFinder } from 'protractor';
 
 export class SignInStepPage {
-  private until = ExpectedConditions;
-
   private get email(): ElementFinder {
     return $('#email');
   }
@@ -15,12 +13,9 @@ export class SignInStepPage {
     return $('#SubmitLogin > span');
   }
 
-  public async signIn(email, pass): Promise<void> {
-    await browser.wait(this.until.presenceOf(this.email), 3000);
+  public async signIn(email, password): Promise<void> {
     await this.email.sendKeys(email);
-    await browser.wait(this.until.presenceOf(this.password), 3000);
-    await this.password.sendKeys(pass);
-    await browser.wait(this.until.presenceOf(this.submit), 3000);
+    await this.password.sendKeys(password);
     await this.submit.click();
   }
 }

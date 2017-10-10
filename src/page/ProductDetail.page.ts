@@ -1,14 +1,11 @@
-import { $, ElementFinder, ExpectedConditions, browser } from 'protractor';
+import { $, ElementFinder, promise } from 'protractor';
 
 export class ProductDetailPage {
-  private until = ExpectedConditions;
-
   private get addButton(): ElementFinder {
     return $('#add_to_cart > button > span');
   }
 
-  public async addToCart(): Promise<void> {
-    await browser.wait(this.until.presenceOf(this.addButton), 3000);
-    await this.addButton.click();
+  public addToCart(): promise.Promise<void> {      
+    return this.addButton.click();
   }
 }
