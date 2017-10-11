@@ -27,7 +27,7 @@ describe('Given the automation practice page', () => {
 
     beforeEach(async () => {
       await menuContentPage.goToTShirtMenu();
-      await productListPage.goToProductItemDetails(productName);
+      await productListPage.selectProduct(productName);
       await productDetailPage.addToCart();
       await productAddedModalPage.proceedToCheckout();
       await summaryStepPage.proceedToCheckout();

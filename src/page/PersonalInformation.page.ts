@@ -1,4 +1,4 @@
-import { $, $$, ElementFinder, ElementArrayFinder, promise, browser, by } from 'protractor';
+import { $, ElementFinder, promise, browser, by } from 'protractor';
 
 export class PersonalInformationPage {
   private get title(): ElementFinder {
@@ -13,26 +13,6 @@ export class PersonalInformationPage {
     return $('input[name="lastname"]');
   }
 
-  private get sex(): ElementArrayFinder {
-    return $$('input[name="sex"]');
-  }
-
-  private get yearsOfExperience(): ElementArrayFinder {
-    return $$('input[name="exp"]');
-  }
-
-  private get professions(): ElementArrayFinder {
-    return $$('input[name="profession"]');
-  }
-
-  private get profilePicture(): ElementFinder {
-    return $('#photo');
-  }
-
-  private get automationTools(): ElementArrayFinder {
-    return $$('input[name="tool"]');
-  }
-
   private get continent(): ElementFinder {
     return $('#continents');
   }
@@ -45,50 +25,57 @@ export class PersonalInformationPage {
     return $('#submit');
   }
 
+  private getSex(sexName: String): ElementFinder {
+    return $(`input[name="sex"][value="${sexName}"]`);
+  }
+  
+  private getYearsOfExperience(years: number): ElementFinder {
+    return $(`input[name="exp"][value="${years}"]`);
+  }
+
+  private getProfession(profession: String): ElementFinder {
+    return $(`input[name="profession"][value="${profession}"]`);
+  }
+
+  private getTool(tool: String): ElementFinder {
+    return $(`input[name="tool"][value="${tool}"]`);
+  }
+
   private selectSex(sexName: String): promise.Promise<void> {
-    return this.sex
-      .filter(sex => sex.getAttribute('value').then(value => value === sexName))
-      .first()
-      .click();
+    return this.getSex(sexName).click();
   }
 
   private selectExperience(years: number): promise.Promise<void> {
-    return this.yearsOfExperience
-      .filter(experience => experience.getAttribute('value').then(value => value === String(years)))
-      .first()
-      .click();
+    return this.getYearsOfExperience(years).click();
   }
 
-  private selectProfessions(professions: String[]): promise.Promise<void> {
-    return this.professions
-      .filter(profession => profession.getAttribute('value')
-        .then(value => professions.some(profession => profession === value)))
-      .each(profession => profession.click());
+  private async selectProfessions(professions: String[]): Promise<void> {
+    for (const profession of professions) {
+      await this.getProfession(profession).click();
+    }
   }
 
-  private selectTools(tools: String[]): promise.Promise<void> {
-    return this.automationTools
-      .filter(tool => tool.getAttribute('value')
-        .then(value => tools.some(tool => tool === value)))
-      .each(tool => tool.click());
+  private async selectTools(tools: String[]): Promise<void> {
+    for (const tool of tools) {
+      await this.getTool(tool).click();
+    }
   }
 
   private selectContinent(continent: string): promise.Promise<void> {
     return this.continent.element(by.cssContainingText('option', continent)).click();
   }
 
-  private selectCommands(commands: String[]): promise.Promise<void> {
-    return this.continent.$$(`option`)
-      .filter(command => command.getText()
-        .then(text => commands.some(command => command === text)))
-      .each(command => command.click());
+  private async selectCommands(commands: string[]): Promise<void> {
+    for (const command of commands) {
+      await this.seleniumCommands.element(by.cssContainingText('option', command)).click();
+    }
   }
 
   public get(): promise.Promise<void> {
     return browser.get('http://toolsqa.com/automation-practice-form/');
   }
 
-  public async fillForm(formData: any): Promise<void>{
+  public async fillForm(formData: any): Promise<void> {
     await this.firstName.sendKeys(formData.firstName);
     await this.lastName.sendKeys(formData.lastName);
     await this.selectSex(formData.sex);
