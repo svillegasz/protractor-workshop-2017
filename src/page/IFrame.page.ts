@@ -5,20 +5,13 @@ export class IFramePage {
     return $('#IF1');
   }
 
-  private get iFrame2(): ElementFinder {
-    return $('#IF2');
+  public async setIFrame1Height(height: number): Promise<void> {
+    await this.iFrame1.getAttribute('id').then(id =>
+      browser.executeScript(`document.getElementById("${id}").style.height = "${height}px";`));
   }
 
-  public get(): promise.Promise<void> {
-    return browser.get('http://toolsqa.com/iframe-practice-page/');
-  }
-
-  public setIFrame1Height(height: string): promise.Promise<void> {
-    return this.iFrame1.getAttribute('id').then(id =>
-      browser.executeScript(`document.getElementById("${id}").style.height = "${height}";`));
-  }
-
-  public getIFrame1Height(): promise.Promise<string> {
-    return this.iFrame1.getCssValue('height');
+  public getIFrame1Height(): promise.Promise<number> {
+    return this.iFrame1.getCssValue('height').then(height =>
+      Number(height.replace(/[^0-9.]/g, '')));
   }
 }
