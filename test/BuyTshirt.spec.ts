@@ -23,9 +23,11 @@ describe('Given the automation practice page', () => {
   });
 
   describe('When I decide to buy a T-shirt', () => {
+    const productName = 'Faded Short Sleeve T-shirts';
+
     beforeEach(async () => {
       await menuContentPage.goToTShirtMenu();
-      await productListPage.goToProductItemDetails();
+      await productListPage.selectProduct(productName);
       await productDetailPage.addToCart();
       await productAddedModalPage.proceedToCheckout();
       await summaryStepPage.proceedToCheckout();
