@@ -33,14 +33,14 @@ export class PersonalInformationPage {
     return $(`input[name="exp"][value="${years}"]`).click();
   }
 
-  private async selectProfessions(professions: String[]): Promise<void>{
-    for (let profession of professions) {
+  private async selectProfessions(professions: String[]): Promise<void> {
+    for (const profession of professions) {
       await $(`input[name="profession"][value="${profession}"]`).click();
     }
   }
 
-  private async selectTools(tools: String[]): Promise<void>{
-    for (let tool of tools) {
+  private async selectTools(tools: String[]): Promise<void> {
+    for (const tool of tools) {
       await $(`input[name="tool"][value="${tool}"]`).click();
     }
   }
@@ -49,8 +49,8 @@ export class PersonalInformationPage {
     return this.continent.element(by.cssContainingText('option', continent)).click();
   }
 
-  private async selectCommands(commands: string[]): Promise<void>{
-    for (let command of commands) {
+  private async selectCommands(commands: string[]): Promise<void> {
+    for (const command of commands) {
       await this.seleniumCommands.element(by.cssContainingText('option', command)).click();
     }
   }
