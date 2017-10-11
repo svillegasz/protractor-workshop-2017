@@ -1,0 +1,22 @@
+import { browser } from 'protractor';
+import { IFramePage } from '../src/page';
+
+describe('Given the iFrame Page', () => {
+  const iFramePage: IFramePage = new IFramePage();
+
+  beforeEach(async () => {
+    await browser.get('http://toolsqa.com/iframe-practice-page/');
+  });
+
+  describe('When I change the iFrame1 height', () => {
+    const newHeight = 500;
+
+    beforeEach(async () => {
+      await iFramePage.setIFrame1Height(newHeight);
+    });
+
+    it('Then it should have the new height', () => {
+      expect(iFramePage.getFormFrameHeight()).toBe(newHeight);
+    });
+  });
+});

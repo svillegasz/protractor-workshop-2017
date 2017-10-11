@@ -1,4 +1,4 @@
-import { $, ElementFinder, promise, browser, by } from 'protractor';
+import { $, ElementFinder, promise, by } from 'protractor';
 
 export class PersonalInformationPage {
   private get title(): ElementFinder {
@@ -69,10 +69,6 @@ export class PersonalInformationPage {
     for (const command of commands) {
       await this.seleniumCommands.element(by.cssContainingText('option', command)).click();
     }
-  }
-
-  public get(): promise.Promise<void> {
-    return browser.get('http://toolsqa.com/automation-practice-form/');
   }
 
   public async fillForm(formData: any): Promise<void> {
