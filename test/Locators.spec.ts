@@ -1,11 +1,10 @@
-import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
 
 describe('Given the tools QA page', () => {
   const personalInformationPage: PersonalInformationPage = new PersonalInformationPage();
 
   beforeEach(async () => {
-    await browser.get('http://toolsqa.com/automation-practice-form/');
+    await personalInformationPage.get();
   });
 
   describe('When I fill the form', () => {

@@ -1,4 +1,4 @@
-import { $, $$, ElementFinder, ElementArrayFinder, promise } from 'protractor';
+import { $, $$, ElementFinder, ElementArrayFinder, promise, browser, by } from 'protractor';
 
 export class PersonalInformationPage {
   private get title(): ElementFinder {
@@ -52,9 +52,9 @@ export class PersonalInformationPage {
       .click();
   }
 
-  private selectExperience(years: String): promise.Promise<void> {
+  private selectExperience(years: number): promise.Promise<void> {
     return this.yearsOfExperience
-      .filter(experience => experience.getAttribute('value').then(value => value === years))
+      .filter(experience => experience.getAttribute('value').then(value => value === String(years)))
       .first()
       .click();
   }
@@ -73,15 +73,19 @@ export class PersonalInformationPage {
       .each(tool => tool.click());
   }
 
-  private selectContinent(continent: String): promise.Promise<void> {
-    return this.continent.$(`option[value="${continent}"`).click();
+  private selectContinent(continent: string): promise.Promise<void> {
+    return this.continent.element(by.cssContainingText('option', continent)).click();
   }
 
   private selectCommands(commands: String[]): promise.Promise<void> {
     return this.continent.$$(`option`)
-      .filter(command => command.getAttribute('value')
-        .then(value => commands.some(command => command === value)))
+      .filter(command => command.getText()
+        .then(text => commands.some(command => command === text)))
       .each(command => command.click());
+  }
+
+  public get(): promise.Promise<void> {
+    return browser.get('http://toolsqa.com/automation-practice-form/');
   }
 
   public async fillForm(formData: any): Promise<void>{
