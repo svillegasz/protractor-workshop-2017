@@ -1,4 +1,4 @@
-import { $, ElementFinder, promise, browser } from 'protractor';
+import { $, ElementFinder, browser } from 'protractor';
 
 export class IFramePage {
   private get formFrame(): ElementFinder {
