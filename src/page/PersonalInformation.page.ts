@@ -25,23 +25,39 @@ export class PersonalInformationPage {
     return $('#submit');
   }
 
+  private getSex(sexName: String): ElementFinder {
+    return $(`input[name="sex"][value="${sexName}"]`);
+  }
+  
+  private getYearsOfExperience(years: number): ElementFinder {
+    return $(`input[name="exp"][value="${years}"]`);
+  }
+
+  private getProfession(profession: String): ElementFinder {
+    return $(`input[name="profession"][value="${profession}"]`);
+  }
+
+  private getTool(tool: String): ElementFinder {
+    return $(`input[name="tool"][value="${tool}"]`);
+  }
+
   private selectSex(sexName: String): promise.Promise<void> {
-    return $(`input[name="sex"][value="${sexName}"]`).click();
+    return this.getSex(sexName).click();
   }
 
   private selectExperience(years: number): promise.Promise<void> {
-    return $(`input[name="exp"][value="${years}"]`).click();
+    return this.getYearsOfExperience(years).click();
   }
 
   private async selectProfessions(professions: String[]): Promise<void> {
     for (const profession of professions) {
-      await $(`input[name="profession"][value="${profession}"]`).click();
+      await this.getProfession(profession).click();
     }
   }
 
   private async selectTools(tools: String[]): Promise<void> {
     for (const tool of tools) {
-      await $(`input[name="tool"][value="${tool}"]`).click();
+      await this.getTool(tool).click();
     }
   }
 
