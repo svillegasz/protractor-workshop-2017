@@ -1,4 +1,4 @@
-import { IFramePage } from '../src/page'
+import { IFramePage } from '../src/page';
 
 describe('Given the iFrame Page', () => {
   const iFramePage: IFramePage = new IFramePage();

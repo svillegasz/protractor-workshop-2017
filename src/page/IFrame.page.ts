@@ -18,7 +18,7 @@ export class IFramePage {
       browser.executeScript(`document.getElementById("${id}").style.height = "${height}";`));
   }
 
-  public getIFrame1Height(): promise.Promise<string>{
+  public getIFrame1Height(): promise.Promise<string> {
     return this.iFrame1.getCssValue('height');
   }
 }
