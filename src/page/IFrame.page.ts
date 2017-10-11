@@ -1,6 +1,10 @@
 import { $, ElementFinder, promise, browser } from 'protractor';
 
 export class IFramePage {
+  private get title(): ElementFinder {
+    return $('#content h1');
+  }
+
   private get iFrame1(): ElementFinder {
     return $('#IF1');
   }
@@ -20,5 +24,9 @@ export class IFramePage {
 
   public getIFrame1Height(): promise.Promise<string>{
     return this.iFrame1.getCssValue('height');
+  }
+
+  public getTitle(): promise.Promise<string> {
+    return this.title.getText();
   }
 }
