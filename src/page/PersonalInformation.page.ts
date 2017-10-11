@@ -88,7 +88,7 @@ export class PersonalInformationPage {
     return browser.get('http://toolsqa.com/automation-practice-form/');
   }
 
-  public async fillForm(formData: any): Promise<void>{
+  public async fillForm(formData: any): Promise<void> {
     await this.firstName.sendKeys(formData.firstName);
     await this.lastName.sendKeys(formData.lastName);
     await this.selectSex(formData.sex);

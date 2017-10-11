@@ -5,13 +5,13 @@ export class ProductListPage {
     return $$('.product-container');
   }
 
-  private findByProduct(name: String): ElementFinder{
+  private findByProduct(name: String): ElementFinder {
     return this.products
       .filter((product) => product.$('.product-name').getText()
         .then(text => text === name)).first();
   }
 
-  private selectProduct(name: String): promise.Promise<void>{
+  private selectProduct(name: String): promise.Promise<void> {
     return this.findByProduct(name).click();
   }
 
