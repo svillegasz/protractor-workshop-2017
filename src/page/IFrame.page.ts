@@ -1,7 +1,7 @@
 import { $, ElementFinder, browser, promise } from 'protractor';
 
 export class IFramePage {
-  private get mainTitle(): ElementFinder {
+  private get title(): ElementFinder {
     return $('#content h1');
   }
 
@@ -9,16 +9,8 @@ export class IFramePage {
     return $('#IF1');
   }
 
-  private get formFrameTitle(): ElementFinder {
-    return this.formFrame.$('#content > h1');
-  }
-
   public getTitle(): promise.Promise<string> {
-    return this.mainTitle.getText();
-  }
-
-  public getFormFrameTitle(): promise.Promise<string> {
-    return this.formFrameTitle.getText();
+    return this.title.getText();
   }
 
   public async setFormFrameHeight(height: number): Promise<void> {
