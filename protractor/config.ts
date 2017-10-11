@@ -3,7 +3,7 @@ import { reporter } from './helper/reporter';
 
 export let config: Config = {
   framework: 'jasmine',
-  specs: ['../test/**/*.spec.js'],
+  specs: ['../test/**/Locators.spec.js'],
   capabilities: {
     browserName: 'chrome',
     chromeOptions: {
