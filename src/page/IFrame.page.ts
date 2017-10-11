@@ -1,32 +1,26 @@
-import { $, ElementFinder, promise, browser } from 'protractor';
+import { $, ElementFinder, browser, promise } from 'protractor';
 
 export class IFramePage {
   private get title(): ElementFinder {
     return $('#content h1');
   }
 
-  private get iFrame1(): ElementFinder {
+  private get formFrame(): ElementFinder {
     return $('#IF1');
   }
 
-  private get iFrame2(): ElementFinder {
-    return $('#IF2');
-  }
-
-  public get(): promise.Promise<void> {
-    return browser.get('http://toolsqa.com/iframe-practice-page/');
-  }
-
-  public setIFrame1Height(height: string): promise.Promise<void> {
-    return this.iFrame1.getAttribute('id').then(id =>
-      browser.executeScript(`document.getElementById("${id}").style.height = "${height}";`));
-  }
-
-  public getIFrame1Height(): promise.Promise<string>{
-    return this.iFrame1.getCssValue('height');
-  }
-
+  
   public getTitle(): promise.Promise<string> {
     return this.title.getText();
+  }
+
+  public async setFormFrameHeight(height: number): Promise<void> {
+    const id = await this.formFrame.getAttribute('id');
+    await browser.executeScript(`document.getElementById("${id}").style.height = "${height}px";`);
+  }
+
+  public async getFormFrameHeight(): Promise<number> {
+    const height = await this.formFrame.getCssValue('height');
+    return await Number(height.replace(/[^0-9.]/g, ''));
   }
 }

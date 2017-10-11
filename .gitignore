@@ -3,6 +3,9 @@
 ### Typescript
 dist
 
+### Reports
+reports
+
 ### Node ###
 # Logs
 logs
