@@ -12,7 +12,7 @@ export class ProductListPage {
   }
 
   private selectProduct(name: String): promise.Promise<void>{
-    return this.findByProduct(name).click();
+    return this.findByProduct(name).$('img').click();
   }
 
   public goToProductItemDetails(name: String): promise.Promise<void> {
