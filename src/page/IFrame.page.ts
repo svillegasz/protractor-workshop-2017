@@ -6,12 +6,12 @@ export class IFramePage {
   }
 
   public async setIFrame1Height(height: number): Promise<void> {
-    await this.iFrame1.getAttribute('id').then(id =>
-      browser.executeScript(`document.getElementById("${id}").style.height = "${height}px";`));
+    const id = this.iFrame1.getAttribute('id');
+    await browser.executeScript(`document.getElementById("${id}").style.height = "${height}px";`);
   }
 
-  public getIFrame1Height(): promise.Promise<number> {
-    return this.iFrame1.getCssValue('height').then(height =>
-      Number(height.replace(/[^0-9.]/g, '')));
+  public async getIFrame1Height(): Promise<number> {
+    const height = await this.iFrame1.getCssValue('height');
+    return await Number(height.replace(/[^0-9.]/g, ''));
   }
 }
