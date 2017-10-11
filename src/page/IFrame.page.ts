@@ -6,7 +6,7 @@ export class IFramePage {
   }
 
   public async setIFrame1Height(height: number): Promise<void> {
-    const id = this.formFrame.getAttribute('id');
+    const id = await this.formFrame.getAttribute('id');
     await browser.executeScript(`document.getElementById("${id}").style.height = "${height}px";`);
   }
 
