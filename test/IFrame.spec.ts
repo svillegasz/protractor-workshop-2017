@@ -16,7 +16,7 @@ describe('Given the iFrame Page', () => {
     });
 
     it('Then it should have the new height', () => {
-      expect(iFramePage.getIFrame1Height()).toBe(newHeight);
+      expect(iFramePage.getFormFrameHeight()).toBe(newHeight);
     });
   });
 });

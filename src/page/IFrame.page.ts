@@ -1,17 +1,17 @@
 import { $, ElementFinder, promise, browser } from 'protractor';
 
 export class IFramePage {
-  private get iFrame1(): ElementFinder {
+  private get formFrame(): ElementFinder {
     return $('#IF1');
   }
 
   public async setIFrame1Height(height: number): Promise<void> {
-    const id = this.iFrame1.getAttribute('id');
+    const id = this.formFrame.getAttribute('id');
     await browser.executeScript(`document.getElementById("${id}").style.height = "${height}px";`);
   }
 
-  public async getIFrame1Height(): Promise<number> {
-    const height = await this.iFrame1.getCssValue('height');
+  public async getFormFrameHeight(): Promise<number> {
+    const height = await this.formFrame.getCssValue('height');
     return await Number(height.replace(/[^0-9.]/g, ''));
   }
 }
