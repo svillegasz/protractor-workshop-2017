@@ -4,6 +4,13 @@ import { reporter } from './helper/reporter';
 export let config: Config = {
   framework: 'jasmine',
   specs: ['../test/**/*.spec.js'],
+  capabilities: {
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['disable-infobars=true --window-size=800,600'],
+      prefs: { credentials_enable_service: false }
+    }
+  },
   noGlobals: true,
   getPageTimeout: 30000,
   jasmineNodeOpts: {
