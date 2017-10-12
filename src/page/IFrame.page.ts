@@ -1,7 +1,7 @@
 import { $, ElementFinder, browser, promise } from 'protractor';
 
 export class IFramePage {
-  private get title(): ElementFinder {
+  private get titleLabel(): ElementFinder {
     return $('#content h1');
   }
 
