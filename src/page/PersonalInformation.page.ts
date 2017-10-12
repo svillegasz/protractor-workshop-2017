@@ -1,4 +1,5 @@
 import { $, ElementFinder, promise, by } from 'protractor';
+import { resolve } from 'path';
 
 export class PersonalInformationPage {
   private get title(): ElementFinder {
@@ -23,6 +24,10 @@ export class PersonalInformationPage {
 
   private get submit(): ElementFinder {
     return $('#submit');
+  }
+
+  private get photo(): ElementFinder {
+    return $('#photo');
   }
 
   private getSex(sexName: String): ElementFinder {
@@ -71,6 +76,11 @@ export class PersonalInformationPage {
     }
   }
 
+  private uploadPhoto(photoRelativePath: string): promise.Promise<void> {
+    const photoAbsolutePath = resolve(__dirname, photoRelativePath);
+    return this.photo.sendKeys(photoAbsolutePath);
+  }
+
   public async fillForm(formData: any): Promise<void> {
     await this.firstName.sendKeys(formData.firstName);
     await this.lastName.sendKeys(formData.lastName);
@@ -80,10 +90,19 @@ export class PersonalInformationPage {
     await this.selectTools(formData.tools);
     await this.selectContinent(formData.continent);
     await this.selectCommands(formData.commands);
+    await this.uploadPhoto(formData.file);
+  }
+
+  public async submitForm(formData: any): Promise<any> {
+    await this.fillForm(formData);
     await this.submit.click();
   }
 
   public getTitle(): promise.Promise<String> {
     return this.title.getText();
+  }
+
+  public getPhotoName(): promise.Promise<string> {
+    return this.photo.getAttribute('value');
   }
 }
