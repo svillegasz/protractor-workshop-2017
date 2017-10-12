@@ -3,20 +3,47 @@ import { IFramePage } from '../src/page';
 
 describe('Given the iFrame Page', () => {
   const iFramePage: IFramePage = new IFramePage();
+  const mainTitle = 'Sample Iframe page';
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     await browser.get('http://toolsqa.com/iframe-practice-page/');
   });
 
-  describe('When I change the iFrame1 height', () => {
+  it('Then it should display the correct title', async () => {
+    expect(await iFramePage.getTitle()).toMatch(mainTitle);
+  });
+
+  describe('When I change the form frame height', () => {
     const newHeight = 500;
 
-    beforeEach(async () => {
-      await iFramePage.setIFrame1Height(newHeight);
+    beforeAll(async () => {
+      await iFramePage.setFormFrameHeight(newHeight);
     });
 
-    it('Then it should have the new height', () => {
-      expect(iFramePage.getFormFrameHeight()).toBe(newHeight);
+    it('Then it should have the new height', async () => {
+      expect(await iFramePage.getFormFrameHeight()).toBe(newHeight);
+    });
+
+    describe('And I switch to the form frame height', () => {
+      const frameTitle = 'Practice Automation Form';
+
+      beforeAll(async () => {
+        await iFramePage.switchToFormFrame();
+      });
+
+      it('Then it should display the correct title', async () => {
+        expect(await iFramePage.getTitle()).toBe(frameTitle);
+      });
+
+      describe('And I switch back to the main page', () => {
+        beforeAll(async () => {
+          await iFramePage.switchToMainPage();
+        });
+
+        it('Then it should display the correct title', async () => {
+          expect(await iFramePage.getTitle()).toMatch(mainTitle);
+        });
+      });
     });
   });
 });
