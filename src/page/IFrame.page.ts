@@ -10,7 +10,7 @@ export class IFramePage {
   }
 
   public getTitle(): promise.Promise<string> {
-    return this.title.getText();
+    return this.titleLabel.getText();
   }
 
   public async setFormFrameHeight(height: number): Promise<void> {
