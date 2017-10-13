@@ -26,7 +26,7 @@ export class PersonalInformationPage {
     return $('#submit');
   }
 
-  private get photo(): ElementFinder {
+  private get photoInput(): ElementFinder {
     return $('#photo');
   }
 
@@ -78,7 +78,7 @@ export class PersonalInformationPage {
 
   private uploadPhoto(photoRelativePath: string): promise.Promise<void> {
     const photoAbsolutePath = resolve(__dirname, photoRelativePath);
-    return this.photo.sendKeys(photoAbsolutePath);
+    return this.photoInput.sendKeys(photoAbsolutePath);
   }
 
   public async fillForm(formData: any): Promise<void> {
@@ -103,6 +103,6 @@ export class PersonalInformationPage {
   }
 
   public getPhotoName(): promise.Promise<string> {
-    return this.photo.getAttribute('value');
+    return this.photoInput.getAttribute('value');
   }
 }
