@@ -12,6 +12,7 @@ describe('Given the tools QA page', () => {
     tools: ['Selenium Webdriver'],
     continent: 'South America',
     file: '../../../resources/protractor.png',
+    downloadFile: true,
     commands: [
       'Browser Commands',
       'Navigation Commands',
