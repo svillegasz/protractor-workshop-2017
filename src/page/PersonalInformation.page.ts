@@ -4,6 +4,12 @@ import { resolve } from 'path';
 import { DownloadService } from '../service/Download.service';
 
 export class PersonalInformationPage {
+  private downloadService: DownloadService = new DownloadService();
+
+  public get fileName(): string {
+    return 'test.xlsx';
+  }
+
   private get title(): ElementFinder {
     return $('.page-title h1');
   }
@@ -88,8 +94,8 @@ export class PersonalInformationPage {
   }
 
   private async download(): Promise<void> {
-    const downloadService: DownloadService = new DownloadService();
-    await downloadService.downloadFile(await this.downloadLink.getAttribute('href'), 'filename');
+    const link = await this.downloadLink.getAttribute('href');
+    await this.downloadService.downloadFile(link, this.fileName);
   }
 
   public async fillForm(formData: any): Promise<void> {
