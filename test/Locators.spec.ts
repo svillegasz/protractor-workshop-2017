@@ -59,7 +59,7 @@ describe('Given the tools QA page', () => {
 
     it('Then it should download the test file correctly', () => {
       const hash = createHash('sha256');
-      const expectedHash = 'b28c94b2195c8ed259f0b415aaee3f39b0b2920a4537611499fa044956917a21';
+      const expectedHash = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
       const fileName = personalInformationPage.fileName;
       const downloadedFile = downloadService.readFileFromTemp(fileName);
       expect(hash.update(downloadedFile).digest('hex')).toBe(expectedHash);

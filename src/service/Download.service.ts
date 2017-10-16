@@ -1,4 +1,4 @@
-import { readFileSync, existsSync, mkdirSync, writeFileSync } from 'fs';
+import { readFileSync, existsSync, mkdirSync, createWriteStream } from 'fs';
 
 const dir = `${__dirname}/../../../temp`;
 const agent = require('superagent-promise')(require('superagent'), Promise);
@@ -8,8 +8,9 @@ export class DownloadService {
     if (!existsSync(dir)) {
       mkdirSync(dir);
     }
-    const data = await agent.get(link);
-    writeFileSync(`${dir}/${filename}`, data);
+    const file = createWriteStream(`${dir}/${filename}`);    
+    const response = await agent.get(link);
+    response.pipe(file);
   }
 
   public readFileFromTemp(filename: string): Buffer {
