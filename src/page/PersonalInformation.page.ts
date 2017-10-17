@@ -1,7 +1,15 @@
-import { $, ElementFinder, promise, by } from 'protractor';
+import { $, ElementFinder, promise, by, element } from 'protractor';
 import { resolve } from 'path';
 
+import { DownloadService } from '../service/Download.service';
+
 export class PersonalInformationPage {
+  private downloadService: DownloadService = new DownloadService();
+
+  public get fileName(): string {
+    return 'test.xlsx';
+  }
+
   private get title(): ElementFinder {
     return $('.page-title h1');
   }
@@ -28,6 +36,10 @@ export class PersonalInformationPage {
 
   private get photoInput(): ElementFinder {
     return $('#photo');
+  }
+
+  private get downloadLink(): ElementFinder {
+    return element(by.linkText('Test File to Download'));
   }
 
   private getSex(sexName: String): ElementFinder {
@@ -81,6 +93,11 @@ export class PersonalInformationPage {
     return this.photoInput.sendKeys(photoAbsolutePath);
   }
 
+  private async download(): Promise<void> {
+    const link = await this.downloadLink.getAttribute('href');
+    await this.downloadService.downloadFile(link, this.fileName);
+  }
+
   public async fillForm(formData: any): Promise<void> {
     await this.firstName.sendKeys(formData.firstName);
     await this.lastName.sendKeys(formData.lastName);
@@ -91,6 +108,9 @@ export class PersonalInformationPage {
     await this.selectContinent(formData.continent);
     await this.selectCommands(formData.commands);
     await this.uploadPhoto(formData.file);
+    if (formData.downloadFile) {
+      await this.download();
+    }
   }
 
   public async submitForm(formData: any): Promise<any> {

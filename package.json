@@ -32,7 +32,9 @@
   },
   "homepage": "https://github.com/svillegasz/protractor-workshop-2017#readme",
   "dependencies": {
-    "protractor": "^5.1.2"
+    "protractor": "^5.1.2",
+    "superagent": "^3.6.3",
+    "superagent-promise": "^1.1.0"
   },
   "devDependencies": {
     "@types/jasminewd2": "^2.0.3",
